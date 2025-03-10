@@ -6,15 +6,24 @@
     <title>Oscar Dahlblom</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
+    <script>
+        document.addEventListener("scroll", function () {
+            let scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            let bgPosition = scrollPercent * 100; // Convert scroll percent to background position
+            document.body.style.backgroundPosition = `0% ${bgPosition}%`;
+        });
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
         body {
             font-family: 'Playfair Display', serif;
-            background: linear-gradient(135deg, #012f5b, #032751); /* Dark blue gradient */
+            background: linear-gradient(135deg, #023668, #032751, #011527); /* Dark blue gradient */
+            background-size: 200% 200%;
             color: #5b6d86; /* Default text color */
             margin: 0;
             padding: 0;
+            transition: background-position 1.0s ease-out;
         }
 
         h2, h4 {
@@ -40,9 +49,11 @@
         }
 
         .main-title {
-            font-size: clamp(1.5rem, 0rem + 4vw, 2rem);
+            font-size: clamp(1.4rem, 0rem + 3vw, 2rem);
             font-weight: bold;
             text-align: left;
+            width: 30rem;
+
         }
 
         .main-title span {
@@ -86,7 +97,6 @@
             background: transparent;
             border: 1px solid #60a1de; /* Thin border */
             border-radius: 50%; /* Fully circular cards */
-            padding: 3rem; /* Increased padding */
             width: 300px;
             height: 300px;
             display: flex;
@@ -95,13 +105,17 @@
             justify-content: center;
             text-align: center;
             transition: transform 0.3s ease;
-            overflow: hidden;
+            overflow: hidden; 
+        }
+
+        .card p, h4{
+            padding: 0px 3rem;
         }
 
         .card img {
             border-radius: 50%;
-            width: 75%;
-            height: 75%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
@@ -144,10 +158,8 @@
                 <span>Oscar</span>
                 <span>Dahlblom</span>
             </h1>
-            <h2 class="mt-1"><i>Game Developer & Software Engineer</i></p>
+            <h2 class="mt-1"><i>Relationship-oriented Engineer, Economist & Game Developer</i></p>
         </div>
-
-        
     </header>
 
     
@@ -178,28 +190,71 @@
             </div>
             <div class="card shadow-md">
                 <h4 class="text-2xl font-semibold">Languages</h3>
-                <p class="mt-4">Fluent in Swedish (Native), English (Professional), and German (Basic).</p>
+                <p class="mt-4">Fluent in Swedish (Native) & English (Professional).</p>
             </div>
         </div>
     </section>
     
     <!-- Projects Gallery -->
+    <!-- Projects Gallery -->
     <section class="container mx-auto px-6 section-spacing">
-        <h3 class="text-4xl font-light text-center mb-10">Projects</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center" x-data="{ projects: [
-            {title: 'Project 1', description: 'A cool game project.', image: 'placeholder.jpg', link: '#'},
-            {title: 'Project 2', description: 'Another awesome game.', image: 'placeholder.jpg', link: '#'}
-        ] }">
+        <h3 class="text-4xl font-light text-center mb-10">Projects</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center"
+            x-data="{ projects: [
+                { title: 'City 1870', 
+                description: 'In development. Retro/90s-inspired isometric city-building game set in the Victorian era.', 
+                images: ['City1870ConceptArt1.png', 'City1870Screen1.png'], 
+                link: '#' },
+                { title: 'Sanctify ESG', 
+                description: 'AI-driven SaaS-solution for sustainability analysis. Led design and development.', 
+                images: ['SanctifyESGLogo.png', 'SanctifyESG1.png', 'SanctifyESG2.png'], 
+                link: 'https://sanctify.ai/' }
+            ] }">
+
             <template x-for="project in projects" :key="project.title">
-                <div class="card shadow-md hover:shadow-lg">
-                    <img :src="project.image" alt="Game screenshot" class="w-full h-full">
-                    <h4 class="text-2xl font-semibold mt-6" x-text="project.title"></h3>
-                    <p class="mt-4" x-text="project.description"></p>
-                    <a :href="project.link" class="text-blue-600 hover:underline block mt-4">View Project →</a>
+                <div class="card shadow-md flex flex-col items-center relative overflow-hidden"
+                    x-data="{ currentIndex: 0 }">
+
+                    <!-- Image/Text Container -->
+                    <div class="relative w-full h-full flex items-center justify-center">
+                        <!-- Left Arrow -->
+                        <button @click="currentIndex = (currentIndex - 1 + (project.images.length + 1)) % (project.images.length + 1)" 
+                                class="absolute left-2 bg-gray-700 text-white px-2 py-1 rounded-full text-sm z-10">
+                            ←
+                        </button>
+
+                        <!-- First Image (Index 0) -->
+                        <img x-show="currentIndex === 0"
+                        :src="project.images[0]" 
+                        alt="Project screenshot" 
+                        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300">
+
+                        <!-- Project Info (Index 1) -->
+                        <div x-show="currentIndex === 1" class="absolute inset-0 flex flex-col justify-center items-center text-center bg-black/30 text-white">
+                            <h4 class="text-2xl font-semibold" x-text="project.title"></h4>
+                            <p class="mt-2 px-4" x-text="project.description"></p>
+                            <a :href="project.link" class="text-white underline mt-4">View Project →</a>
+                        </div>
+
+                        <!-- Remaining Images (Index 2+) -->
+                        <template x-for="(image, index) in project.images.slice(1)" :key="index">
+                            <img x-show="currentIndex === index + 2"
+                                    :src="image" 
+                                    alt="Project screenshot" 
+                                    class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300">
+                        </template>
+
+                        <!-- Right Arrow -->
+                        <button @click="currentIndex = (currentIndex + 1) % (project.images.length + 1)" 
+                                class="absolute right-2 bg-gray-700 text-white px-2 py-1 rounded-full text-sm z-10">
+                            →
+                        </button>
+                    </div>
                 </div>
             </template>
         </div>
     </section>
+
     
     <!-- Footer -->
     <footer class="text-center py-10 font-light">
