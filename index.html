@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oscar Dahlblom | Game Dev Portfolio</title>
+    <title>Oscar Dahlblom</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
         body {
             font-family: 'Playfair Display', serif;
@@ -17,8 +17,13 @@
             padding: 0;
         }
 
-        h1, h2, h3 {
+        h2, h4 {
             color: white;
+        }
+
+        h3 {
+            color: #60a1de;
+            font-family: "Inter", sans-serif;
         }
 
         /* Main title in #60a1de */
@@ -35,40 +40,46 @@
         }
 
         .main-title {
-            font-size: 4rem;
+            font-size: clamp(1.5rem, 0rem + 4vw, 2rem);
             font-weight: bold;
             text-align: left;
         }
 
         .main-title span {
             display: block;
-            font-size: 4.5rem;
+            line-height: 1;
+            font-size: clamp(1rem, 2rem + 8vw, 7.5rem);
+            font-weight: lighter;
         }
 
         /* Buttons Group */
         .btn-group {
-            display: flex;
-            justify-content: flex-start;
+            display: inline-flex;
+            align-items: center;
             gap: 1rem;
-            margin-left: 2rem;
+            padding: 8px 8px;    
+            float: right;
         }
 
         .btn {
             background: transparent;
             color: #60a1de; /* Matching color for the buttons */
+            font-family: "Inter", sans-serif;
+            font-weight: light;
+            border: 1px solid hsla(209, 66%, 62%, 0%); /* Thin border */
+            border-radius: 2px; 
             padding: 8px 16px;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            transition: all 0.6s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            text-transform: uppercase;
         }
 
         .btn:hover {
-            background-color: #60a1de;
             color: white;
+            border: 1px solid #60a1de; /* Thin border */
+            border-radius: 30px; /* Fully circular cards */
         }
 
         .card {
@@ -104,7 +115,7 @@
         }
 
         footer {
-            background-color: #012f5b;
+            background-color: #011c364d;
             padding: 2rem 0;
         }
 
@@ -114,6 +125,18 @@
     </style>
 </head>
 <body>
+    <!-- Buttons Group -->
+    <div class="btn-group font-light">
+        <a href="Oscar_Dahlblom_Resume_25g.pdf" download class="btn">
+            Resume
+        </a>
+        <a href="mailto:oscar.dahlblom@gmail.com" class="btn">
+            Email
+        </a>
+        <a href="https://www.linkedin.com/in/oscar-dahlblom-188708a6/" target="_blank" class="btn">
+            LinkedIn
+        </a>
+    </div>
     <!-- Header -->
     <header>
         <div class="main-title">
@@ -121,49 +144,40 @@
                 <span>Oscar</span>
                 <span>Dahlblom</span>
             </h1>
-            <p class="text-xl mt-4">Game Developer & Software Engineer</p>
+            <h2 class="mt-1"><i>Game Developer & Software Engineer</i></p>
         </div>
 
-        <!-- Buttons Group -->
-        <div class="btn-group">
-            <a href="Oscar_Dahlblom_Resume_25g.pdf" download class="btn">
-                Resume
-            </a>
-            <a href="mailto:oscar.dahlblom@example.com" class="btn">
-                Email
-            </a>
-            <a href="https://www.linkedin.com/in/oscar-dahlblom/" target="_blank" class="btn">
-                LinkedIn
-            </a>
-        </div>
+        
     </header>
+
+    
     
     <!-- Skills & Experience -->
     <section class="container mx-auto px-6 section-spacing">
-        <h2 class="text-4xl font-bold text-center mb-10">Skills & Experience</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <h3 class="text-4xl font-light text-center mb-10">Skills & Experience</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center">
             <div class="card shadow-md">
-                <h3 class="text-2xl font-semibold">Technical Leadership</h3>
+                <h4 class="text-2xl font-semibold">Technical Leadership</h3>
                 <p class="mt-4">Led software teams, product development, and stakeholder communication as Founder & CTO at Sanctify (2022-present).</p>
             </div>
             <div class="card shadow-md">
-                <h3 class="text-2xl font-semibold">Software Engineering</h3>
+                <h4 class="text-2xl font-semibold">Software Engineering</h3>
                 <p class="mt-4">Developed embedded systems in C, C++, and SystemC during tenure at ARM (2017-2019).</p>
             </div>
             <div class="card shadow-md">
-                <h3 class="text-2xl font-semibold">Project & Team Management</h3>
+                <h4 class="text-2xl font-semibold">Project & Team Management</h3>
                 <p class="mt-4">Managed fundraising, team building, and AI/ML research as CEO at Sanctify (2019-2022).</p>
             </div>
             <div class="card shadow-md">
-                <h3 class="text-2xl font-semibold">Game Development Passion</h3>
+                <h4 class="text-2xl font-semibold">Game Development Passion</h3>
                 <p class="mt-4">Deeply interested in game development, bridging tech & management, and enhancing player experiences.</p>
             </div>
             <div class="card shadow-md">
-                <h3 class="text-2xl font-semibold">Tools & Technologies</h3>
+                <h4 class="text-2xl font-semibold">Tools & Technologies</h3>
                 <p class="mt-4">Proficient in Jira, Confluence, Git, AI & Machine Learning, Cloud Computing, Python, C / C++ / C#.</p>
             </div>
             <div class="card shadow-md">
-                <h3 class="text-2xl font-semibold">Languages</h3>
+                <h4 class="text-2xl font-semibold">Languages</h3>
                 <p class="mt-4">Fluent in Swedish (Native), English (Professional), and German (Basic).</p>
             </div>
         </div>
@@ -171,15 +185,15 @@
     
     <!-- Projects Gallery -->
     <section class="container mx-auto px-6 section-spacing">
-        <h2 class="text-4xl font-bold text-center mb-10">Projects</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12" x-data="{ projects: [
+        <h3 class="text-4xl font-light text-center mb-10">Projects</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center" x-data="{ projects: [
             {title: 'Project 1', description: 'A cool game project.', image: 'placeholder.jpg', link: '#'},
             {title: 'Project 2', description: 'Another awesome game.', image: 'placeholder.jpg', link: '#'}
         ] }">
             <template x-for="project in projects" :key="project.title">
                 <div class="card shadow-md hover:shadow-lg">
                     <img :src="project.image" alt="Game screenshot" class="w-full h-full">
-                    <h3 class="text-2xl font-semibold mt-6" x-text="project.title"></h3>
+                    <h4 class="text-2xl font-semibold mt-6" x-text="project.title"></h3>
                     <p class="mt-4" x-text="project.description"></p>
                     <a :href="project.link" class="text-blue-600 hover:underline block mt-4">View Project →</a>
                 </div>
@@ -188,8 +202,17 @@
     </section>
     
     <!-- Footer -->
-    <footer class="text-center py-10">
-        <p class="opacity-80 text-lg">&copy; 2025 Oscar Dahlblom | Game Dev Portfolio</p>
+    <footer class="text-center py-10 font-light">
+        <a href="Oscar_Dahlblom_Resume_25g.pdf" download class="btn">
+            Resume
+        </a>
+        <a href="mailto:oscar.dahlblom@gmail.com" class="btn">
+            Email
+        </a>
+        <a href="https://www.linkedin.com/in/oscar-dahlblom-188708a6/" target="_blank" class="btn">
+            LinkedIn
+        </a>
+        <p class="opacity-80 text-lg">&copy; 2025 Oscar Dahlblom</p>
     </footer>
 </body>
 </html>
